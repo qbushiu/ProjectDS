@@ -10,9 +10,14 @@
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
     
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/main_styler.css">
+
+    <!--custom js-->
+    <script type="text/javascript" src="js/dataSource.js"></script>
     
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -88,32 +93,66 @@
             </nav>
             
         <div class="row">
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title card-number">4</h5>
-        <p class="card-text">Total Number of Turbines</p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title good-turbine card-number">3</h5>
-        <p class="card-text">in good condition</p>
-      </div>
-    </div>
-  </div>
-  <div class="col-sm-4">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title bad-turbine card-number">1</h5>
-        <p class="card-text">in bad condition</p>
-      </div>
-    </div>
-  </div>
-</div>
+            <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title card-number">4</h5>
+                    <p class="card-text">Total Number of Turbines</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title good-turbine card-number">3</h5>
+                    <p class="card-text">in good condition</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title bad-turbine card-number">1</h5>
+                    <p class="card-text">in bad condition</p>
+                  </div>
+                </div>
+            </div>
+        </div>
             
+        <br>
+
+        <div class="row">
+            <div class="col-sm-9">
+                <canvas id="bar-chart" width="800"></canvas>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">WaterPower</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Client Info</h6>
+                    <p class="card-text">This space will be used to display client info, meant for the SM. Let's have some more Lorem ipsum to fill space.</p>
+                    <hr>
+                    <h6 class="card-subtitle mb-2 text-muted">Client Website</h6>
+                    <a href="#" class="card-link">www.waterpower.org</a>     
+                    <hr> 
+                                  
+                    <h6 class="card-subtitle mb-2 text-muted">Documents</h6>
+                    <a href="#" class="card-link">SLA</a>
+                    <a href="#" class="card-link">MOU</a>                              
+                  </div>
+                </div>
+            </div>
+        </div>    
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-sm-12">
+                <h3>Turbine Status</h3>
+                <br>
+                <img src="images/locator.png" width="100%">
+            </div>
+        </div>   
+
         </div>
     </div>
 
@@ -126,19 +165,8 @@
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#sidebar").mCustomScrollbar({
-                theme: "minimal"
-            });
-
-            $('#sidebarCollapse').on('click', function () {
-                $('#sidebar, #content').toggleClass('active');
-                $('.collapse.in').toggleClass('in');
-                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
-            });
-        });
-    </script>
+    <!--custom js-->
+    <script type="text/javascript" src="js/dataSource.js"></script>
 </body>
 
 </html>
