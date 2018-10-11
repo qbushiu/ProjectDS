@@ -38,10 +38,10 @@ class Comment{
           "id"=>$this->id,
           "comment"=>$this->comment
         );
-    echo $temp["id"];
-    echo $temp["comment"];
-    array_push($json_response,$temp);
-    echo json_encode($json_response, JSON_PRETTY_PRINT);
+    // echo $temp["id"];
+    // echo $temp["comment"];
+    // array_push($json_response,$temp);
+    // echo json_encode($json_response, JSON_PRETTY_PRINT);
 
 
   }
