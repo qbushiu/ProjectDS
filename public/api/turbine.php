@@ -2,7 +2,7 @@
 require '../../app/common.php';
 // require 'printer.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-  require 'clientPost.php';
+  require 'turbinePost.php';
   exit;
 }
 

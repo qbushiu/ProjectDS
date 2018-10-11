@@ -34,7 +34,7 @@ class Turbine{
     $success=$statement->execute();
     $arr=[];
     while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-      $temp =  new Site($row);
+      $temp =  new Turbine($row);
       array_push($arr, $temp);
     }
     return $arr;
