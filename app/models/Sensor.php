@@ -15,7 +15,7 @@ class Sensor{
     $this->sensorName=$data['sensorName'];
     $this->sensorDescription = $data['sensorDescription'];
     $this->manufacturer = $data['manufacturer'];
-    $this->$totalLifeExpectancyHours = $data['totalLifeExpectancyHours'];
+    $this->totalLifeExpectancyHours = $data['totalLifeExpectancyHours'];
   }
 
   public static function fetchAll(){
