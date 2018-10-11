@@ -8,14 +8,14 @@ class Sensor{
   public $sensorName;
   public $sensorDescription;
   public $manufacturer;
-  public $totalLifeExpectancyHours;
+  public $totalLifeExpectancy;
 
   public function __construct($data){
     $this->sensorId = isset($data['sensorId']) ? intval($data['sensorId']):null;
     $this->sensorName=$data['sensorName'];
     $this->sensorDescription = $data['sensorDescription'];
     $this->manufacturer = $data['manufacturer'];
-    $this->totalLifeExpectancyHours = $data['totalLifeExpectancyHours'];
+    $this->totalLifeExpectancy = $data['totalLifeExpectancy'];
   }
 
   public static function fetchAll(){
