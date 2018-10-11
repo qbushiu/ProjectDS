@@ -9,3 +9,4 @@ require 'environment.php';
 /** MODELS **/
 require 'models/Comment.php';
 require 'models/Client.php';
+require 'models/Sensor.php';
