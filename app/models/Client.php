@@ -45,5 +45,5 @@ class Client{
   //         "id"=>$this->id,
   //         "comment"=>$this->comment
   //       );
-  }
+  // }
 }
