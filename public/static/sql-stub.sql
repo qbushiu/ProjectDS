@@ -5,6 +5,7 @@ drop table if exists turbine;
 drop table if exists site;
 drop table if exists client;
 drop table if exists sensor;
+drop table if exists clientNotes;
 
 CREATE TABLE sensor (
 sensorId INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -17,7 +18,7 @@ totalLifeExpectancy INT NOT NULL
 CREATE TABLE client (
 clientId INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
 clientName VARCHAR(50) NOT NULL,
-clientDescription TEXT NOT NULL,
+clientDescription VARCHAR(80) NOT NULL,
 gicsSector VARCHAR(50) NOT NULL,
 gicsSubIndustry VARCHAR(50) NOT NULL,
 headquarters VARCHAR(50) NOT NULL
@@ -27,10 +28,10 @@ CREATE TABLE site (
 siteId INT AUTO_INCREMENT NOT NULL,
 clientId INT NOT NULL,
 siteName VARCHAR(36) NOT NULL,
-siteDescription TEXT NOT NULL,
+siteDescription VARCHAR(80) NOT NULL,
 primaryContact VARCHAR(36) NOT NULL,
 capacity INT NOT NULL,
-commercialDate DATE NOT NULL,
+commercialDate VARCHAR(80) NOT NULL,
 addrLine1 VARCHAR(256) NOT NULL,
 addrLine2 VARCHAR(36),
 addrCity VARCHAR(36) NOT NULL,
@@ -76,26 +77,31 @@ CREATE TABLE sensorDeployed (
     FOREIGN KEY (turbineDeployedId) REFERENCES turbineDeployed(turbineDeployedId)
     );
 
-drop table if exists sensorTimeSeries;
-
-create table sensorTimeSeries (
-sensorDeployedId int not null,
-dataCollectedDate varchar(80) not null,
-output decimal(10,7) not null,
-heartRate decimal(10,6) not null,
-compressorEfficiency decimal(10,8) not null,
-availability decimal(10,8) not null,
-reliability decimal(10,8) not null,
-firedHours decimal(10,8) not null,
-trips binary not null,
-starts binary not null,
-foreign key (sensorDeployedId) references sensorDeployed(sensorDeployedId)
+CREATE TABLE sensorTimeSeries (
+sensorDeployedId INT NOT NULL,
+dataCollectedDate VARCHAR(80) NOT NULL,
+output DECIMAL(10,7) NOT NULL,
+heartRate DECIMAL(10,6) NOT NULL,
+compressorEfficiency DECIMAL(10,8) NOT NULL,
+availability DECIMAL(10,8) NOT NULL,
+reliability DECIMAL(10,8) NOT NULL,
+firedHours DECIMAL(10,8) NOT NULL,
+trips binary NOT NULL,
+starts binary NOT NULL,
+FOREIGN KEY (sensorDeployedId) REFERENCES sensorDeployed(sensorDeployedId)
 );
 
-LOAD DATA LOCAL INFILE '/var/www/ProjectDS/public/static/sensor.csv' INTO TABLE sensor FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+CREATE TABLE clientNotes (
+  noteId INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  notes VARCHAR(300),
+  clientId INT NOT NULL,
+  FOREIGN KEY (clientId) REFERENCES client(clientId)
+);
+
+LOAD DATA LOCAL INFILE '/var/www/ProjectDS/public/static/sensor.csv' INTO TABLE sensor FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 LINES;
 LOAD DATA LOCAL INFILE '/var/www/ProjectDS/public/static/client.csv' INTO TABLE client FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 LINES;
 LOAD DATA LOCAL INFILE  '/var/www/ProjectDS/public/static/site.csv' INTO TABLE site FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 LINES;
-LOAD DATA LOCAL INFILE  '/var/www/ProjectDS/public/static/turbine.csv' INTO TABLE turbine FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
-LOAD DATA LOCAL INFILE  '/var/www/ProjectDS/public/static/turbineDeployed.csv' INTO TABLE turbineDeployed FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
-LOAD DATA LOCAL INFILE  '/var/www/ProjectDS/public/static/sensorDeployed.csv' INTO TABLE sensorDeployed FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
-LOAD DATA LOCAL INFILE  '/var/www/ProjectDS/public/static/sensorTimeSeries.csv' INTO TABLE sensorTimeSeries FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';
+LOAD DATA LOCAL INFILE  '/var/www/ProjectDS/public/static/turbine.csv' INTO TABLE turbine FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE  '/var/www/ProjectDS/public/static/turbineDeployed.csv' INTO TABLE turbineDeployed FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE  '/var/www/ProjectDS/public/static/sensorDeployed.csv' INTO TABLE sensorDeployed FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 LINES;
+LOAD DATA LOCAL INFILE  '/var/www/ProjectDS/public/static/sensorTimeSeries.csv' INTO TABLE sensorTimeSeries FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"' LINES TERMINATED BY '\n' IGNORE 1 LINES;
