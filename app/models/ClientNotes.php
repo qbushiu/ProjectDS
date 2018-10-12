@@ -9,13 +9,14 @@ class ClientNotes{
   public $clientId;
 
   public function __construct($data){
+    $this->noteId=$data['noteId'];
     $this->notes=$data['notes'];
     $this->clientId = intval($data['clientId']);
   }
 
   public static function fetchAll(){
-    $db= new PDO(DB_SERVER,DB_USER,DB_PW);
-    $sql= 'SELECT * from clientNotes';
+    $db = new PDO(DB_SERVER,DB_USER,DB_PW);
+    $sql = 'SELECT * from clientNotes';
     $statement=$db->prepare($sql);
     $success=$statement->execute();
     $arr=[];
