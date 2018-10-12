@@ -2,7 +2,7 @@
 
 //require 'printer.php';
 
-class SensorTimeSeries{
+class TurbineDeployed{
 
   public $turbineDeployedId;
   public $turbineId;
@@ -33,7 +33,7 @@ class SensorTimeSeries{
     $success=$statement->execute();
     $arr=[];
     while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-      $temp =  new turbineDeployed($row);
+      $temp =  new TurbineDeployed($row);
       array_push($arr, $temp);
     }
     return $arr;
