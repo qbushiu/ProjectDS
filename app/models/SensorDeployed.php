@@ -2,31 +2,30 @@
 
 //require 'printer.php';
 
-class Turbine{
+class SensorDeployed{
 
-  public $turbineId;
-  public $turbineName;
-  public $turbineDescription;
-  public $capacity;
-  public $maintenanceInterval;
-  
+  public $sensorDeployedId;
+  public $sensorId;
+  public $turbineDeployedId;
+  public $serialNumber;
+  public $deployedDate;
+
   public function __construct($data){
-    $this->turbineId = isset($data['turbineId']) ? intval($data['turbineId']):null;
-    $this->turbineName=$data['turbineName'];
-    $this->turbineDescription = $data['turbineDescription'];
-    $this->capacity = $data['capacity'];
-    $this->rampUpTime = $data['rampUpTime'];
-    $this->maintenanceInterval = $data['maintenanceInterval'];
+    $this->sensorDeployedId = isset($data['sensorDeployedId']) ? intval($data['sensorDeployedId']):null;
+    $this->sensorId=$data['sensorId'];
+    $this->turbineDeployedId = $data['turbineDeployedId'];
+    $this->serialNumber = $data['serialNumber'];
+    $this->deployedDate = $data['deployedDate'];
   }
 
   public static function fetchAll(){
     $db= new PDO(DB_SERVER,DB_USER,DB_PW);
-    $sql= 'SELECT * from turbine';
+    $sql= 'SELECT * from sensorDeployed';
     $statement=$db->prepare($sql);
     $success=$statement->execute();
     $arr=[];
     while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
-      $temp =  new Turbine($row);
+      $temp =  new SensorDeployed($row);
       array_push($arr, $temp);
     }
     return $arr;
