@@ -34,6 +34,6 @@ class ClientNotes{
       $this->notes,
       $this->clientId
     ]);
-    $this->noteId = $db->lastInsertId();
+    $this->noteId = intval($db->lastInsertId());
   }
 }
