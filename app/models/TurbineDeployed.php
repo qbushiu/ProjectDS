@@ -20,7 +20,7 @@ class TurbineDeployed{
     $this->siteId = $data['siteId'];
     $this->serialNumber = $data['serialNumber'];
     $this->deployedDate = $data['deployedDate'];
-    $this->totalFiredHours = $data['$totalFiredHours'];
+    $this->totalFiredHours = $data['totalFiredHours'];
     $this->totalStarts = $data['totalStarts'];
     $this->lastPlannedOutageDate = $data['lastPlannedOutageDate'];
     $this->lastUnplannedOutageDate = $data['lastUnplannedOutageDate'];
