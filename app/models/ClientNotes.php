@@ -3,13 +3,12 @@
 //require 'printer.php';
 
 class ClientNotes{
-
   public $noteId;
   public $notes;
   public $clientId;
 
   public function __construct($data){
-    $this->noteId=$data['noteId'];
+    $this->noteId = isset($data['noteId']) ? intval($data['noteId']):null;
     $this->notes=$data['notes'];
     $this->clientId = intval($data['clientId']);
   }
