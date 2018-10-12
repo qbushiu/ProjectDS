@@ -10,7 +10,7 @@ class ClientNotes{
 
   public function __construct($data){
     $this->notes=$data['notes'];
-    $this->clientId = $data['clientId'];
+    $this->clientId = intval($data['clientId']);
   }
 
   public static function fetchAll(){
