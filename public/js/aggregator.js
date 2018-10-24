@@ -17,7 +17,7 @@ var commentsApp = new Vue({
 			],
 			turbineDeployed: [
 	    {
-	        turbineDeployedId: 'blech',
+	        turbineDeployedId: '',
 	        turbineId: '',
 	        siteId: '',
 	        serialNumber: '',
@@ -53,29 +53,6 @@ var commentsApp = new Vue({
 	      .catch( function(err){
 	        console.log(err)
 	      })
-			},
-			addComment() {
-				console.log("Reached setter");
-				fetch('http://ec2-13-233-134-241.ap-south-1.compute.amazonaws.com/api/comment.php', {
-						body : JSON.stringify({
-    					comment: document.getElementById('comment').value
-  					}),
-						// mode: "no-cors", // no-cors, cors, *same-origin
-						headers: {
-    					'Accept': 'application/json, text/plain, */*',
-    					'Content-Type': 'application/json; charset=utf-8'
-  					},
-						method: "POST"
-					}
-				)
-				.then(function(resp) {
-					console.log(resp.json());
-					console.log(document.getElementById("comment").value);
-					plotAvailability();
-				})
-				.catch( function(err){
-					console.log(err)
-				})
 			}
 	  },
 		created() {
