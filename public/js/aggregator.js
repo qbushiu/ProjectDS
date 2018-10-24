@@ -15,6 +15,19 @@ var commentsApp = new Vue({
 	        starts: ''
     		}
 			],
+			turbineDeployed: [
+	    {
+	        turbineDeployedId: 'blech',
+	        turbineId: '',
+	        siteId: '',
+	        serialNumber: '',
+	        deployedDate: '',
+	        totalFiredHours: '',
+	        totalStarts: '',
+        	lastPlannedOutageDate: '',
+        	lastUnplannedOutageDate: ''
+    	}
+		],
 			testLorem: 'Test Lorem Ipsum Dolor'
 		},
 	  methods: {
@@ -30,6 +43,17 @@ var commentsApp = new Vue({
 	        console.log(err)
 	      })
 	    },
+			fetchAllTurbinesData() {
+				fetch('http://ec2-13-233-94-247.ap-south-1.compute.amazonaws.com/api/turbineDeployed.php')
+	      .then(response => response.json())
+	      .then (json => {
+					commentsApp.turbineDeployed = json;
+					console.log(commentsApp.turbineDeployed);
+				})
+	      .catch( function(err){
+	        console.log(err)
+	      })
+			},
 			addComment() {
 				console.log("Reached setter");
 				fetch('http://ec2-13-233-134-241.ap-south-1.compute.amazonaws.com/api/comment.php', {
@@ -56,6 +80,7 @@ var commentsApp = new Vue({
 	  },
 		created() {
 			this.fetchSensorTimeSeries();
+			this.fetchAllTurbinesData();
 			// this.addComment();
 			// this.checkData();
 		}

@@ -12,13 +12,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
-    
+
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/main_styler.css">
 
     <!--custom js-->
-    <script type="text/javascript" src="js/dataSource.js"></script>
-    
+    <!-- <script type="text/javascript" src="js/dataSource.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
 
@@ -56,7 +57,7 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li  class="active">
                     <a href="#">All Turbines</a>
                 </li>
@@ -65,7 +66,7 @@
                 </li>
             </ul>
 
-           
+
         </nav>
 
         <!-- Page Content  -->
@@ -92,60 +93,43 @@
                 </div>
             </nav>
 
+        <div id="aggregatorDiv">
             <h4>All Turbines</h4>
 
             <br>
-        
+
         <div class="row">
             <div class="col-sm-12">
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th title="Field #2">Id</th>
-                            <th title="Field #3">siteId</th>
-                            <th title="Field #4">serialNumber</th>
-                            <th title="Field #5">deployedOn</th>
-                            <th title="Field #6">totalFiredHours</th>
-                            <th title="Field #7">totalStarts</th>
-                            <th title="Field #8">lastPlannedOutage</th>
-                            <th title="Field #9">lastUnplannedOutage</th>
+                            <th>turbDepId</th>
+                            <th>turbId</th>
+                            <th>siteId</th>
+                            <th>serialNo</th>
+                            <th>depOn</th>
+                            <th>totalFiredHrs</th>
+                            <th>totalStarts</th>
+                            <th>LPO</th>
+                            <th>LUO</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td align="right">1</td>
-                            <td align="right">1</td>
-                            <td>9HA-01-IU0008</td>
-                            <td>2016-07-01</td>
-                            <td align="right">3543</td>
-                            <td align="right">5</td>
-                            <td>2016-06-01</td>
-                            <td>NULL</td>
+                    <tbody v-if="turbineDeployed">
+                        <tr v-for="item in turbineDeployed">
+                            <td>{{item.turbineDeployedId}}</td>
+                            <td>{{item.turbineId}}</td>
+                            <td>{{item.siteId}}</td>
+                            <td>{{item.serialNumber}}</td>
+                            <td>{{item.deployedDate}}</td>
+                            <td>{{item.totalFiredHours}}</td>
+                            <td>{{item.totalStarts}}</td>
+                            <td>{{item.lastPlannedOutageDate}}</td>
+                            <td>{{item.lastUnplannedOutageDate}}</td>
                         </tr>
-                    <tr>
-                        <td align="right">3</td>
-                        <td align="right">2</td>
-                        <td>7HA-07-IU0121</td>
-                        <td>2010-10-23</td>
-                        <td align="right">32543</td>
-                        <td align="right">21</td>
-                        <td>2016-06-01</td>
-                        <td>2013-05-13</td>
-                    </tr>
-                    <tr>
-                        <td align="right">4</td>
-                        <td align="right">3</td>
-                        <td>9F-06-IU0021</td>
-                        <td>2000-02-16</td>
-                        <td align="right">123543</td>
-                        <td align="right">119</td>
-                        <td>2016-06-01</td>
-                        <td>2015-04-13</td>
-                    </tr>
                     </tbody>
-                </table>    
+                </table>
             </div>
-        </div>    
+        </div>
 
         <hr>
 
@@ -221,7 +205,8 @@
                 </div>
             </div>
         </div>
-        
+      </div>
+
         </div>
     </div>
 
@@ -235,7 +220,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
     <!--custom js-->
-    <script type="text/javascript" src="js/dataSource.js"></script>
+    <script type="text/javascript" src="js/aggregator.js"></script>
+    <!-- <script type="text/javascript" src="js/dataSource.js"></script> -->
 </body>
 
 </html>
