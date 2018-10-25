@@ -1,7 +1,10 @@
 var commentsApp = new Vue({
 	el: '#aggregatorDiv',
 	data : {
-<<<<<<< HEAD
+		images: {
+				he: "images/he.jpg",
+				pte: "images/pte.jpg"
+			},
 		clientInfo: [
 			{
 				clientId: '',
@@ -12,8 +15,16 @@ var commentsApp = new Vue({
         headquarters: ''
 			}
 		],
-=======
->>>>>>> 5eea8e6d2e86538459e1995e82901a4df85c7c66
+		sites: [
+			{
+				siteId: '',
+				clientId: '',
+				siteName: '',
+				siteDescription: '',
+				primaryContact: '',
+				capacity: ''
+			}
+		],
 			sensorTimeSeries: [
 				{
 	        sensorDeployedId: '',
@@ -41,10 +52,22 @@ var commentsApp = new Vue({
         	lastUnplannedOutageDate: ''
     	}
 		],
+		turbineDeployedSpecific: [
+		{
+				turbineDeployedId: '',
+				turbineId: '',
+				siteId: '',
+				serialNumber: '',
+				deployedDate: '',
+				totalFiredHours: '',
+				totalStarts: '',
+				lastPlannedOutageDate: '',
+				lastUnplannedOutageDate: ''
+		}
+	],
 			testLorem: 'Test Lorem Ipsum Dolor'
 		},
 	  methods: {
-<<<<<<< HEAD
 			fetchCientInfo() {
 				// console.log(document.getElementById("feedbackComment").value);
 	      fetch('http://ec2-13-233-94-247.ap-south-1.compute.amazonaws.com/api/client.php')
@@ -57,10 +80,19 @@ var commentsApp = new Vue({
 	        console.log(err)
 	      })
 	    },
+			fetchSitesInfo() {
+				// console.log(document.getElementById("feedbackComment").value);
+	      fetch('http://ec2-13-233-94-247.ap-south-1.compute.amazonaws.com/api/site.php')
+	      .then(response => response.json())
+	      .then (json => {
+					commentsApp.sites = json;
+					console.log(commentsApp.sites);
+				})
+	      .catch( function(err){
+	        console.log(err)
+	      })
+	    },
 			fetchSensorTimeSeries() {
-=======
-	    fetchSensorTimeSeries() {
->>>>>>> 5eea8e6d2e86538459e1995e82901a4df85c7c66
 				// console.log(document.getElementById("feedbackComment").value);
 	      fetch('http://ec2-13-233-94-247.ap-south-1.compute.amazonaws.com/api/sensorTimeSeries.php')
 	      .then(response => response.json())
@@ -82,7 +114,6 @@ var commentsApp = new Vue({
 	      .catch( function(err){
 	        console.log(err)
 	      })
-<<<<<<< HEAD
 			},
 			addClientComment() {
 			  fetch('http://ec2-13-233-94-247.ap-south-1.compute.amazonaws.com/api/clientNotes.php', {
@@ -108,17 +139,13 @@ var commentsApp = new Vue({
 			  .catch( function(err){
 			    console.log(err)
 			  })
-=======
->>>>>>> 5eea8e6d2e86538459e1995e82901a4df85c7c66
 			}
 	  },
 		created() {
 			this.fetchSensorTimeSeries();
 			this.fetchAllTurbinesData();
-<<<<<<< HEAD
 			this.fetchCientInfo();
-=======
->>>>>>> 5eea8e6d2e86538459e1995e82901a4df85c7c66
+			this.fetchSitesInfo();
 			// this.addComment();
 			// this.checkData();
 		}
