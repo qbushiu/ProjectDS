@@ -115,7 +115,6 @@ var commentsApp = new Vue({
 	        console.log(err)
 	      })
 			},
-<<<<<<< HEAD
 			fetchSpecificTurbinesData(siteId) {
 				fetch('http://ec2-13-233-94-247.ap-south-1.compute.amazonaws.com/api/turbineDeployed.php?+turbineDeployedId=1')
 	      .then(response => response.json())
@@ -127,8 +126,6 @@ var commentsApp = new Vue({
 	        console.log(err)
 	      })
 			},
-=======
->>>>>>> c22eb1e3def0fdfb453077929fba73fe4f6be36c
 			addClientComment() {
 			  fetch('http://ec2-13-233-94-247.ap-south-1.compute.amazonaws.com/api/clientNotes.php', {
 			      body : JSON.stringify({
