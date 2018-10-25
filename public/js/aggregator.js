@@ -116,7 +116,7 @@ var commentsApp = new Vue({
 	      })
 			},
 			fetchSpecificTurbinesData(siteId) {
-				fetch('http://ec2-13-233-94-247.ap-south-1.compute.amazonaws.com/api/turbineDeployed.php?turbineDeployedId=1')
+				fetch('http://ec2-13-233-94-247.ap-south-1.compute.amazonaws.com/api/turbineDeployed.php?turbineDeployedId='+siteId)
 	      .then(response => response.json())
 	      .then (json => {
 					commentsApp.turbineDeployedSpecific = json;
