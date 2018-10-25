@@ -39,6 +39,19 @@ class TurbineDeployed{
     return $arr;
   }
 
+  public static function fetchSpecific($turbineDeployedId){
+    $db= new PDO(DB_SERVER,DB_USER,DB_PW);
+    $sql= 'SELECT * from turbineDeployed WHERE turbineDeployedId=',turbineDeployedId;
+    $statement=$db->prepare($sql);
+    $success=$statement->execute();
+    $arr=[];
+    while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+      $temp =  new TurbineDeployed($row);
+      array_push($arr, $temp);
+    }
+    return $arr;
+  }
+
   // public function create() {
   //   $db = new PDO(DB_SERVER, DB_USER, DB_PW);
   //   $sql = 'INSERT COMMENT_PHP(comment) VALUES (?)';

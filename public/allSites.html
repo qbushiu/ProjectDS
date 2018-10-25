@@ -94,7 +94,7 @@
             </nav>
 
         <div id="aggregatorDiv">
-            <h4>All Turbines</h4>
+            <h4>All Sites</h4>
 
             <br>
 
@@ -103,28 +103,22 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-                            <th>turbDepId</th>
-                            <th>turbId</th>
+                            <th>Associated Turbine</th>
                             <th>siteId</th>
-                            <th>serialNo</th>
-                            <th>depOn</th>
-                            <th>totalFiredHrs</th>
-                            <th>totalStarts</th>
-                            <th>LPO</th>
-                            <th>LUO</th>
+                            <th>clientId</th>
+                            <th>siteDescription</th>
+                            <th>primaryContact</th>
+                            <th>capacity</th>
                         </tr>
                     </thead>
-                    <tbody v-if="turbineDeployed">
-                        <tr v-for="item in turbineDeployed">
-                            <td>{{item.turbineDeployedId}}</td>
-                            <td>{{item.turbineId}}</td>
+                    <tbody v-if="sites">
+                        <tr v-for="item in sites">
+                            <td v-on:click="fetchSpecificTurbinesData(item.siteId)">{{item.siteId}}</td>
                             <td>{{item.siteId}}</td>
-                            <td>{{item.serialNumber}}</td>
-                            <td>{{item.deployedDate}}</td>
-                            <td>{{item.totalFiredHours}}</td>
-                            <td>{{item.totalStarts}}</td>
-                            <td>{{item.lastPlannedOutageDate}}</td>
-                            <td>{{item.lastUnplannedOutageDate}}</td>
+                            <td>{{item.clientId}}</td>
+                            <td>{{item.siteName}}</td>
+                            <td>{{item.primaryContact}}</td>
+                            <td>{{item.capacity}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -133,9 +127,53 @@
 
         <hr>
 
-        <h4>Key Performance Indicators for Turbine 2</h4>
+        <h4>Turbine Data for the site selected</h4>
         <br>
 
+        <div class="row">
+            <div class="col-sm-8">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th><b>Parameter</b></th>
+                            <th><b>Value</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Turbine ID</td>
+                            <td>{{turbineDeployedSpecific.turbineId}}</td>
+                        </tr>
+                        <tr>
+                            <td>Serial Number</td>
+                            <td>{{turbineDeployedSpecific.serialNumber}}</td>
+                        </tr>
+                        <tr>
+                            <td>Date Deployed</td>
+                            <td>{{turbineDeployedSpecific.dateDeployed}}</td>
+                        </tr>
+                        <tr>
+                            <td>Total Fired Hours</td>
+                            <td>{{turbineDeployedSpecific.totalFiredHours}}</td>
+                        </tr>
+                        <tr>
+                            <td>Total Starts</td>
+                            <td>{{turbineDeployedSpecific.totalStarts}}</td>
+                        </tr>
+                        <tr>
+                            <td>Last Planned Outage</td>
+                            <td>{{turbineDeployedSpecific.lastPlannedOutageDate}}</td>
+                        </tr>
+                        <tr>
+                            <td>Last Unplanned Outage</td>
+                            <td>{{turbineDeployedSpecific.lastUnplannedOutageDate}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+<!--
         <div class="row">
             <div class="col-sm-3">
                 <div class="card">
@@ -204,7 +242,7 @@
                   </div>
                 </div>
             </div>
-        </div>
+        </div> -->
       </div>
 
         </div>

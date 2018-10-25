@@ -16,9 +16,11 @@
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/main_styler.css">
 
+    <!-- Vue js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
     <!--custom js-->
     <!-- <script type="text/javascript" src="js/dataSource.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
@@ -35,31 +37,26 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>Alternative Green Systems</h3>
+                <h5>Alternative Green Systems</h5>
             </div>
-
             <ul class="list-unstyled components">
-                <!-- <p>Dummy Heading</p> -->
-                <li>
-                    <a href="index.html">Home</a>
+                <li class="active">
+                    <a href="#">Home</a>
                 </li>
                 <li>
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">WaterPower</a>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pacific Tidal Energy</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="#">Fury Engines</a>
+                            <a href="#">Pacific Tidal Energy</a>
                         </li>
                         <li>
-                            <a href="#">Devil Drillers</a>
-                        </li>
-                        <li>
-                            <a href="#">Boring Company</a>
+                            <a href="#">Hoosier Energy</a>
                         </li>
                     </ul>
                 </li>
 
-                <li  class="active">
-                    <a href="#">All Turbines</a>
+                <li>
+                    <a href="allTurbines.html">All Turbines</a>
                 </li>
                 <li>
                     <a href="addTurbine.html">Add Turbine</a>
@@ -93,119 +90,72 @@
                 </div>
             </nav>
 
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title card-number">4</h5>
+                    <p class="card-text">Total Number of Turbines</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title good-turbine card-number">3</h5>
+                    <p class="card-text">in good condition</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title bad-turbine card-number">1</h5>
+                    <p class="card-text">in bad condition</p>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+
         <div id="aggregatorDiv">
-            <h4>All Turbines</h4>
 
-            <br>
+        <div class="row">
+            <div class="col-sm-9">
+                <canvas id="bar-chart" width="800"></canvas>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">WaterPower</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Client Info</h6>
+                    <!-- <p class="card-text">{{This space will be used to display client info, meant for the SM. Let's have some more Lorem ipsum to fill space.}}</p> -->
+                    <p class="card-text">{{testLorem}}</p>
+                    <hr>
+                    <h6 class="card-subtitle mb-2 text-muted">Client Website</h6>
+                    <a href="#" class="card-link">www.waterpower.org</a>
+                    <hr>
 
+                    <h6 class="card-subtitle mb-2 text-muted">Documents</h6>
+                    <a href="#" class="card-link">SLA</a>
+                    <a href="#" class="card-link">MOU</a>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+
+        <br>
+        <br>
         <div class="row">
             <div class="col-sm-12">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>turbDepId</th>
-                            <th>turbId</th>
-                            <th>siteId</th>
-                            <th>serialNo</th>
-                            <th>depOn</th>
-                            <th>totalFiredHrs</th>
-                            <th>totalStarts</th>
-                            <th>LPO</th>
-                            <th>LUO</th>
-                        </tr>
-                    </thead>
-                    <tbody v-if="turbineDeployed">
-                        <tr v-for="item in turbineDeployed">
-                            <td>{{item.turbineDeployedId}}</td>
-                            <td>{{item.turbineId}}</td>
-                            <td>{{item.siteId}}</td>
-                            <td>{{item.serialNumber}}</td>
-                            <td>{{item.deployedDate}}</td>
-                            <td>{{item.totalFiredHours}}</td>
-                            <td>{{item.totalStarts}}</td>
-                            <td>{{item.lastPlannedOutageDate}}</td>
-                            <td>{{item.lastUnplannedOutageDate}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <h3>Turbine Status</h3>
+                <br>
+                <img src="images/locator.png" width="100%">
             </div>
         </div>
-
-        <hr>
-
-        <h4>Key Performance Indicators for Turbine 2</h4>
-        <br>
-
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title card-number">45k mW</h5>
-                    <p class="card-text">Output</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title card-number">77 units</h5>
-                    <p class="card-text">Heat Rate</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title good-turbine card-number">84%</h5>
-                    <p class="card-text">Efficiency</p>
-                  </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title good-turbine card-number">98%</h5>
-                    <p class="card-text">Availability</p>
-                  </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title card-number good-turbine">97%</h5>
-                    <p class="card-text">Reliability</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title card-number">18</h5>
-                    <p class="card-text">Fired Hours</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title bad-turbine card-number">4</h5>
-                    <p class="card-text">Trips</p>
-                  </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title card-number">14</h5>
-                    <p class="card-text">Starts</p>
-                  </div>
-                </div>
-            </div>
-        </div>
-      </div>
 
         </div>
     </div>
@@ -219,9 +169,13 @@
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
-    <!--custom js-->
+    <!-- Data aggregator -->
     <script type="text/javascript" src="js/aggregator.js"></script>
+    <!--custom js-->
+
     <!-- <script type="text/javascript" src="js/dataSource.js"></script> -->
+    <script type="text/javascript" src="js/dataSource.js"></script>
+
 </body>
 
 </html>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Home | AGS</title>
+    <title>Add | AGS</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="css/main_styler.css">
 
     <!--custom js-->
-    <!-- <script type="text/javascript" src="js/dataSource.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
     <!-- Scrollbar Custom CSS -->
@@ -40,7 +39,7 @@
 
             <ul class="list-unstyled components">
                 <!-- <p>Dummy Heading</p> -->
-                <li>
+                <li >
                     <a href="index.html">Home</a>
                 </li>
                 <li>
@@ -58,11 +57,14 @@
                     </ul>
                 </li>
 
-                <li  class="active">
-                    <a href="#">All Turbines</a>
+                <li>
+                    <a href="allTurbines.html">All Turbines</a>
                 </li>
                 <li>
-                    <a href="addTurbine.html">Add Turbine</a>
+                    <a href="#">Add Turbine</a>
+                </li>
+                <li class="active">
+                    <a href="#">Add Comment</a>
                 </li>
             </ul>
 
@@ -93,119 +95,29 @@
                 </div>
             </nav>
 
-        <div id="aggregatorDiv">
-            <h4>All Turbines</h4>
-
+            <h4>Add info for client</h4>
             <br>
-
-        <div class="row">
-            <div class="col-sm-12">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>turbDepId</th>
-                            <th>turbId</th>
-                            <th>siteId</th>
-                            <th>serialNo</th>
-                            <th>depOn</th>
-                            <th>totalFiredHrs</th>
-                            <th>totalStarts</th>
-                            <th>LPO</th>
-                            <th>LUO</th>
-                        </tr>
-                    </thead>
-                    <tbody v-if="turbineDeployed">
-                        <tr v-for="item in turbineDeployed">
-                            <td>{{item.turbineDeployedId}}</td>
-                            <td>{{item.turbineId}}</td>
-                            <td>{{item.siteId}}</td>
-                            <td>{{item.serialNumber}}</td>
-                            <td>{{item.deployedDate}}</td>
-                            <td>{{item.totalFiredHours}}</td>
-                            <td>{{item.totalStarts}}</td>
-                            <td>{{item.lastPlannedOutageDate}}</td>
-                            <td>{{item.lastUnplannedOutageDate}}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <hr>
-
-        <h4>Key Performance Indicators for Turbine 2</h4>
-        <br>
-
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title card-number">45k mW</h5>
-                    <p class="card-text">Output</p>
+            <div id="aggregatorDiv">
+            <form class="form-horizontal" @submit.prevent="addClientComment">
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="clientId">Client ID:</label>
+                    <div class="col-sm-10">
+                      <input type="number" class="form-control" id="clientId" placeholder="Unique Client ID">
+                    </div>
                   </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title card-number">77 units</h5>
-                    <p class="card-text">Heat Rate</p>
+                  <div class="form-group">
+                    <label class="control-label col-sm-2" for="comment">Comment:</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="comment" placeholder="Add new comment">
+                    </div>
                   </div>
+                  <div class="form-group">
+                    <div class="col-sm-10">
+                      <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                    </div>
                 </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title good-turbine card-number">84%</h5>
-                    <p class="card-text">Efficiency</p>
-                  </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title good-turbine card-number">98%</h5>
-                    <p class="card-text">Availability</p>
-                  </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title card-number good-turbine">97%</h5>
-                    <p class="card-text">Reliability</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title card-number">18</h5>
-                    <p class="card-text">Fired Hours</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title bad-turbine card-number">4</h5>
-                    <p class="card-text">Trips</p>
-                  </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title card-number">14</h5>
-                    <p class="card-text">Starts</p>
-                  </div>
-                </div>
-            </div>
-        </div>
-      </div>
+            </form>
+          </div>
 
         </div>
     </div>
@@ -221,7 +133,6 @@
 
     <!--custom js-->
     <script type="text/javascript" src="js/aggregator.js"></script>
-    <!-- <script type="text/javascript" src="js/dataSource.js"></script> -->
 </body>
 
 </html>
