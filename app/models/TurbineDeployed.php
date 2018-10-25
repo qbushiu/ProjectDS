@@ -42,7 +42,7 @@ class TurbineDeployed{
   public static function fetchSpecific($turbineDeployedId){
     $db= new PDO(DB_SERVER,DB_USER,DB_PW);
     $sql= 'SELECT * from turbineDeployed WHERE turbineDeployedId='.$turbineDeployedId;
-    echo $sql;
+    // echo $sql;
     $statement=$db->prepare($sql);
     $success=$statement->execute();
     $arr=[];
