@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Home | AGS</title>
+
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/main_styler.css">
+
+    <!--custom js-->
+    <!-- <script type="text/javascript" src="js/dataSource.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Alternative Green Systems</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+                <!-- <p>Dummy Heading</p> -->
+                <li>
+                    <a href="index.html">Home</a>
+                </li>
+                <li>
+                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">WaterPower</a>
+                    <ul class="collapse list-unstyled" id="homeSubmenu">
+                        <li>
+                            <a href="#">Fury Engines</a>
+                        </li>
+                        <li>
+                            <a href="#">Devil Drillers</a>
+                        </li>
+                        <li>
+                            <a href="#">Boring Company</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li  class="active">
+                    <a href="#">All Turbines</a>
+                </li>
+                <li>
+                    <a href="addTurbine.html">Add Turbine</a>
+                </li>
+            </ul>
+
+
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span></span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">Log Out</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        <div id="aggregatorDiv">
+            <h4>All Turbines</h4>
+
+            <br>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>turbDepId</th>
+                            <th>turbId</th>
+                            <th>siteId</th>
+                            <th>serialNo</th>
+                            <th>depOn</th>
+                            <th>totalFiredHrs</th>
+                            <th>totalStarts</th>
+                            <th>LPO</th>
+                            <th>LUO</th>
+                        </tr>
+                    </thead>
+                    <tbody v-if="turbineDeployed">
+                        <tr v-for="item in turbineDeployed">
+                            <td>{{item.turbineDeployedId}}</td>
+                            <td>{{item.turbineId}}</td>
+                            <td>{{item.siteId}}</td>
+                            <td>{{item.serialNumber}}</td>
+                            <td>{{item.deployedDate}}</td>
+                            <td>{{item.totalFiredHours}}</td>
+                            <td>{{item.totalStarts}}</td>
+                            <td>{{item.lastPlannedOutageDate}}</td>
+                            <td>{{item.lastUnplannedOutageDate}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <hr>
+
+        <h4>Key Performance Indicators for Turbine 2</h4>
+        <br>
+
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title card-number">45k mW</h5>
+                    <p class="card-text">Output</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title card-number">77 units</h5>
+                    <p class="card-text">Heat Rate</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title good-turbine card-number">84%</h5>
+                    <p class="card-text">Efficiency</p>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title good-turbine card-number">98%</h5>
+                    <p class="card-text">Availability</p>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title card-number good-turbine">97%</h5>
+                    <p class="card-text">Reliability</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title card-number">18</h5>
+                    <p class="card-text">Fired Hours</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title bad-turbine card-number">4</h5>
+                    <p class="card-text">Trips</p>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title card-number">14</h5>
+                    <p class="card-text">Starts</p>
+                  </div>
+                </div>
+            </div>
+        </div>
+      </div>
+
+        </div>
+    </div>
+
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <!--custom js-->
+    <script type="text/javascript" src="js/aggregator.js"></script>
+    <!-- <script type="text/javascript" src="js/dataSource.js"></script> -->
+</body>
+
+</html>
