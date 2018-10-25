@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="css/main_styler.css">
 
     <!--custom js-->
+
+    <script type="text/javascript" src="js/moment.min.js"></script>
     <!-- <script type="text/javascript" src="js/dataSource.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
@@ -131,47 +133,92 @@
         <br>
 
         <div class="row">
-            <div class="col-sm-8">
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th><b>Parameter</b></th>
-                            <th><b>Value</b></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Turbine ID</td>
-                            <td>{{turbineDeployedSpecific[0].turbineDeployedId}}</td>
-                        </tr>
-                        <tr>
-                            <td>Serial Number</td>
-                            <td>{{turbineDeployedSpecific[0].serialNumber}}</td>
-                        </tr>
-                        <tr>
-                            <td>Date Deployed</td>
-                            <td>{{turbineDeployedSpecific[0].deployedDate}}</td>
-                        </tr>
-                        <tr>
-                            <td>Total Fired Hours</td>
-                            <td>{{turbineDeployedSpecific[0].totalFiredHours}}</td>
-                        </tr>
-                        <tr>
-                            <td>Total Starts</td>
-                            <td>{{turbineDeployedSpecific[0].totalStarts}}</td>
-                        </tr>
-                        <tr>
-                            <td>Last Planned Outage</td>
-                            <td>{{turbineDeployedSpecific[0].lastPlannedOutageDate}}</td>
-                        </tr>
-                        <tr>
-                            <td>Last Unplanned Outage</td>
-                            <td>{{turbineDeployedSpecific[0].lastUnplannedOutageDate}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title card-number">{{turbineDeployedSpecific[0].serialNumber}}</h5>
+                    <p class="card-text">Serial Number</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title card-number">{{turbineDeployedSpecific[0].totalStarts}}</h5>
+                    <p class="card-text">Total Starts</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title good-turbine card-number">{{plannedOutageDiff}}</h5>
+                    <p class="card-text">LPO</p>
+                  </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title bad-turbine card-number">{{unplannedOutageDiff}}</h5>
+                    <p class="card-text">LUO</p>
+                  </div>
+                </div>
             </div>
         </div>
+
+        <br>
+        <br>
+
+    <p>
+      <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        Details
+      </button>
+    </p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th><b>Parameter</b></th>
+                <th><b>Value</b></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Turbine ID</td>
+                <td>{{turbineDeployedSpecific[0].turbineDeployedId}}</td>
+            </tr>
+            <tr>
+                <td>Serial Number</td>
+                <td>{{turbineDeployedSpecific[0].serialNumber}}</td>
+            </tr>
+            <tr>
+                <td>Date Deployed</td>
+                <td>{{turbineDeployedSpecific[0].deployedDate}}</td>
+            </tr>
+            <tr>
+                <td>Total Fired Hours</td>
+                <td>{{turbineDeployedSpecific[0].totalFiredHours}}</td>
+            </tr>
+            <tr>
+                <td>Total Starts</td>
+                <td>{{turbineDeployedSpecific[0].totalStarts}}</td>
+            </tr>
+            <tr>
+                <td>Last Planned Outage</td>
+                <td>{{turbineDeployedSpecific[0].lastPlannedOutageDate}}</td>
+            </tr>
+            <tr>
+                <td>Last Unplanned Outage</td>
+                <td>{{turbineDeployedSpecific[0].lastUnplannedOutageDate}}</td>
+            </tr>
+        </tbody>
+    </table>
+  </div>
+</div>
+
+
       </div>
 
         </div>

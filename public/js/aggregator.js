@@ -65,7 +65,9 @@ var commentsApp = new Vue({
         	lastUnplannedOutageDate: ''
     	}
 		],
-			testLorem: 'Test Lorem Ipsum Dolor'
+			testLorem: 'Test Lorem Ipsum Dolor',
+			plannedOutageDiff: '',
+			unplannedOutageDiff: ''
 		},
 	  methods: {
 			fetchCientInfo() {
@@ -121,6 +123,8 @@ var commentsApp = new Vue({
 	      .then (json => {
 					commentsApp.testLorem = "Changed lorem ipsum dolor";
 					commentsApp.turbineDeployedSpecific = json;
+					commentsApp.plannedOutageDiff = calcTimeDiff(commentsApp.turbineDeployedSpecific[0].lastPlannedOutageDate);
+					commentsApp.unplannedOutageDiff = calcTimeDiff(commentsApp.turbineDeployedSpecific[0].lastUnplannedOutageDate)
 					console.log(commentsApp.turbineDeployedSpecific);
 				})
 	      .catch( function(err){
@@ -162,6 +166,13 @@ var commentsApp = new Vue({
 			// this.checkData();
 		}
 	})
+
+	function calcTimeDiff(date){
+		given = moment(date, "YYYY-MM-DD");
+		current = moment().startOf('day');
+		diff = moment.duration(given.diff(current)).asDays();
+		return diff+" days ago";
+	}
 
 	function plotAvailability() {
 		new Chart(document.getElementById("bar-chart"), {
