@@ -1,6 +1,7 @@
 var commentsApp = new Vue({
 	el: '#aggregatorDiv',
 	data : {
+<<<<<<< HEAD
 		clientInfo: [
 			{
 				clientId: '',
@@ -11,6 +12,8 @@ var commentsApp = new Vue({
         headquarters: ''
 			}
 		],
+=======
+>>>>>>> 5eea8e6d2e86538459e1995e82901a4df85c7c66
 			sensorTimeSeries: [
 				{
 	        sensorDeployedId: '',
@@ -41,6 +44,7 @@ var commentsApp = new Vue({
 			testLorem: 'Test Lorem Ipsum Dolor'
 		},
 	  methods: {
+<<<<<<< HEAD
 			fetchCientInfo() {
 				// console.log(document.getElementById("feedbackComment").value);
 	      fetch('http://ec2-13-233-94-247.ap-south-1.compute.amazonaws.com/api/client.php')
@@ -54,6 +58,9 @@ var commentsApp = new Vue({
 	      })
 	    },
 			fetchSensorTimeSeries() {
+=======
+	    fetchSensorTimeSeries() {
+>>>>>>> 5eea8e6d2e86538459e1995e82901a4df85c7c66
 				// console.log(document.getElementById("feedbackComment").value);
 	      fetch('http://ec2-13-233-94-247.ap-south-1.compute.amazonaws.com/api/sensorTimeSeries.php')
 	      .then(response => response.json())
@@ -75,6 +82,7 @@ var commentsApp = new Vue({
 	      .catch( function(err){
 	        console.log(err)
 	      })
+<<<<<<< HEAD
 			},
 			addClientComment() {
 			  fetch('http://ec2-13-233-94-247.ap-south-1.compute.amazonaws.com/api/clientNotes.php', {
@@ -100,12 +108,17 @@ var commentsApp = new Vue({
 			  .catch( function(err){
 			    console.log(err)
 			  })
+=======
+>>>>>>> 5eea8e6d2e86538459e1995e82901a4df85c7c66
 			}
 	  },
 		created() {
 			this.fetchSensorTimeSeries();
 			this.fetchAllTurbinesData();
+<<<<<<< HEAD
 			this.fetchCientInfo();
+=======
+>>>>>>> 5eea8e6d2e86538459e1995e82901a4df85c7c66
 			// this.addComment();
 			// this.checkData();
 		}
