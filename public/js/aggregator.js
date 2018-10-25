@@ -39,6 +39,19 @@ var commentsApp = new Vue({
 	        starts: ''
     		}
 			],
+			turbineDeployedSpecific:[
+			{
+					turbineDeployedId: '',
+					turbineId: '',
+					siteId: '',
+					serialNumber: '',
+					deployedDate: '',
+					totalFiredHours: '',
+					totalStarts: '',
+					lastPlannedOutageDate: '',
+					lastUnplannedOutageDate: ''
+			}
+		],
 			turbineDeployed: [
 	    {
 	        turbineDeployedId: '',
@@ -52,19 +65,6 @@ var commentsApp = new Vue({
         	lastUnplannedOutageDate: ''
     	}
 		],
-		turbineDeployedSpecific: [
-		{
-				turbineDeployedId: '',
-				turbineId: '',
-				siteId: '',
-				serialNumber: '',
-				deployedDate: '',
-				totalFiredHours: '',
-				totalStarts: '',
-				lastPlannedOutageDate: '',
-				lastUnplannedOutageDate: ''
-		}
-	],
 			testLorem: 'Test Lorem Ipsum Dolor'
 		},
 	  methods: {
@@ -119,6 +119,7 @@ var commentsApp = new Vue({
 				fetch('http://ec2-13-233-94-247.ap-south-1.compute.amazonaws.com/api/turbineDeployed.php?turbineDeployedId='+siteId)
 	      .then(response => response.json())
 	      .then (json => {
+					commentsApp.testLorem = "Changed lorem ipsum dolor";
 					commentsApp.turbineDeployedSpecific = json;
 					console.log(commentsApp.turbineDeployedSpecific);
 				})

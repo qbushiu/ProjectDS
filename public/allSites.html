@@ -127,7 +127,7 @@
 
         <hr>
 
-        <h4>Turbine Data for the site selected</h4>
+        <h4>Turbine Data for site #{{turbineDeployedSpecific[0].turbineDeployedId}}</h4>
         <br>
 
         <div class="row">
@@ -142,107 +142,36 @@
                     <tbody>
                         <tr>
                             <td>Turbine ID</td>
-                            <td>{{turbineDeployedSpecific.turbineId}}</td>
+                            <td>{{turbineDeployedSpecific[0].turbineDeployedId}}</td>
                         </tr>
                         <tr>
                             <td>Serial Number</td>
-                            <td>{{turbineDeployedSpecific.serialNumber}}</td>
+                            <td>{{turbineDeployedSpecific[0].serialNumber}}</td>
                         </tr>
                         <tr>
                             <td>Date Deployed</td>
-                            <td>{{turbineDeployedSpecific.dateDeployed}}</td>
+                            <td>{{turbineDeployedSpecific[0].deployedDate}}</td>
                         </tr>
                         <tr>
                             <td>Total Fired Hours</td>
-                            <td>{{turbineDeployedSpecific.totalFiredHours}}</td>
+                            <td>{{turbineDeployedSpecific[0].totalFiredHours}}</td>
                         </tr>
                         <tr>
                             <td>Total Starts</td>
-                            <td>{{turbineDeployedSpecific.totalStarts}}</td>
+                            <td>{{turbineDeployedSpecific[0].totalStarts}}</td>
                         </tr>
                         <tr>
                             <td>Last Planned Outage</td>
-                            <td>{{turbineDeployedSpecific.lastPlannedOutageDate}}</td>
+                            <td>{{turbineDeployedSpecific[0].lastPlannedOutageDate}}</td>
                         </tr>
                         <tr>
                             <td>Last Unplanned Outage</td>
-                            <td>{{turbineDeployedSpecific.lastUnplannedOutageDate}}</td>
+                            <td>{{turbineDeployedSpecific[0].lastUnplannedOutageDate}}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-
-<!--
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title card-number">45k mW</h5>
-                    <p class="card-text">Output</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title card-number">77 units</h5>
-                    <p class="card-text">Heat Rate</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title good-turbine card-number">84%</h5>
-                    <p class="card-text">Efficiency</p>
-                  </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title good-turbine card-number">98%</h5>
-                    <p class="card-text">Availability</p>
-                  </div>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title card-number good-turbine">97%</h5>
-                    <p class="card-text">Reliability</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title card-number">18</h5>
-                    <p class="card-text">Fired Hours</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title bad-turbine card-number">4</h5>
-                    <p class="card-text">Trips</p>
-                  </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="card">
-                  <div class="card-body">
-                    <h5 class="card-title card-number">14</h5>
-                    <p class="card-text">Starts</p>
-                  </div>
-                </div>
-            </div>
-        </div> -->
       </div>
 
         </div>
