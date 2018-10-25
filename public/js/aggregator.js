@@ -120,7 +120,7 @@ var commentsApp = new Vue({
 	      .then(response => response.json())
 	      .then (json => {
 					commentsApp.turbineDeployedSpecific = json;
-					console.log("Specific Turbine Data: "+commentsApp.turbineDeployedSpecific);
+					console.log(commentsApp.turbineDeployedSpecific);
 				})
 	      .catch( function(err){
 	        console.log(err)
