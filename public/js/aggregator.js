@@ -65,6 +65,13 @@ var commentsApp = new Vue({
         	lastUnplannedOutageDate: ''
     	}
 		],
+		comments: [
+    	{
+        noteId: '',
+        notes: '',
+        clientId: ''
+    	}
+		],
 			testLorem: 'Test Lorem Ipsum Dolor',
 			plannedOutageDiff: '',
 			unplannedOutageDiff: ''
@@ -155,6 +162,17 @@ var commentsApp = new Vue({
 			  .catch( function(err){
 			    console.log(err)
 			  })
+			},
+			fetchClientComments() {
+				fetch('http://ec2-13-233-94-247.ap-south-1.compute.amazonaws.com/api/clientNotes.php?clientId=2')
+	      .then(response => response.json())
+	      .then (json => {
+					commentsApp.comments = json;
+					console.log(commentsApp.comments);
+				})
+	      .catch( function(err){
+	        console.log(err)
+	      })
 			}
 	  },
 		created() {
@@ -162,6 +180,7 @@ var commentsApp = new Vue({
 			this.fetchAllTurbinesData();
 			this.fetchCientInfo();
 			this.fetchSitesInfo();
+			this.fetchClientComments();
 			// this.addComment();
 			// this.checkData();
 		}

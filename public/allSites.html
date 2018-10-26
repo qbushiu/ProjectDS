@@ -45,7 +45,7 @@
                 <li>
                     <a href="index.html">Home</a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">WaterPower</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
@@ -58,10 +58,13 @@
                             <a href="#">Boring Company</a>
                         </li>
                     </ul>
-                </li>
+                </li> -->
 
                 <li  class="active">
-                    <a href="#">All Turbines</a>
+                    <a href="#">All Sites</a>
+                </li>
+                <li>
+                    <a href="allTurbines.html">All Turbines</a>
                 </li>
                 <li>
                     <a href="addTurbine.html">Add Turbine</a>
@@ -74,26 +77,25 @@
         <!-- Page Content  -->
         <div id="content">
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <div class="container-fluid">
+                  <button type="button" id="sidebarCollapse" class="btn btn-info">
+                      <i class="fas fa-align-left"></i>
+                      <span></span>
+                  </button>
+                  <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <i class="fas fa-align-justify"></i>
+                  </button>
 
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
-                        <i class="fas fa-align-left"></i>
-                        <span></span>
-                    </button>
-                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fas fa-align-justify"></i>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#">Log Out</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="nav navbar-nav ml-auto">
+                          <li class="nav-item active">
+                              <a class="nav-link" href="#">Log Out</a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+          </nav>
 
         <div id="aggregatorDiv">
             <h4>All Sites</h4>
@@ -102,7 +104,7 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <table class="table table-hover">
+                <table class="table table-hover table-bordered">
                     <thead>
                         <tr>
                             <th>Associated Turbine</th>
@@ -130,6 +132,7 @@
         <hr>
 
         <h4>Turbine Data for site #{{turbineDeployedSpecific[0].turbineDeployedId}}</h4>
+        <p>(Click on an associated turbine ID in above table)</p>
         <br>
 
         <div class="row">

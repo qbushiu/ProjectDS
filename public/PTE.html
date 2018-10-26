@@ -54,24 +54,22 @@
                         </li>
                     </ul>
                 </li>
-
                 <li>
-                    <a href="allTurbines.html">All Turbines</a>
+                    <a href="allSites.html">All Sites</a>
                 </li>
+                <!-- <li>
+                    <a href="allTurbines.html">All Turbines</a>
+                </li> -->
                 <li>
                     <a href="addTurbine.html">Add Turbine</a>
                 </li>
             </ul>
-
-
         </nav>
 
         <!-- Page Content  -->
         <div id="content">
-
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-
                     <button type="button" id="sidebarCollapse" class="btn btn-info">
                         <i class="fas fa-align-left"></i>
                         <span></span>
@@ -123,18 +121,17 @@
 
         <div class="row">
             <div class="col-sm-9">
-                <canvas id="bar-chart" width="800"></canvas>
+                <canvas id="bar-chart" height="500" width="800"></canvas>
             </div>
             <div class="col-sm-3">
                 <div class="card">
                   <div class="card-body">
-                    <h5 class="card-title">WaterPower</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Client Info</h6>
+                    <h5 class="card-title">Pacific Tidal Energy</h5>
                     <!-- <p class="card-text">{{This space will be used to display client info, meant for the SM. Let's have some more Lorem ipsum to fill space.}}</p> -->
-                    <p class="card-text">{{testLorem}}</p>
+                    <p class="card-text">Pacific Tidal is the largest tidal electric power holding company in the United States, supplying and delivering energy through local utilities to approximately 7.4 million U.S. customers.</p>
                     <hr>
                     <h6 class="card-subtitle mb-2 text-muted">Client Website</h6>
-                    <a href="#" class="card-link">www.waterpower.org</a>
+                    <a href="#" class="card-link">www.pte.org</a>
                     <hr>
 
                     <h6 class="card-subtitle mb-2 text-muted">Documents</h6>
@@ -145,16 +142,35 @@
             </div>
         </div>
 
-        </div>
-
         <br>
         <br>
         <div class="row">
             <div class="col-sm-12">
-                <h3>Turbine Status</h3>
+                <h3>Client Notes</h3>
                 <br>
-                <img src="images/locator.png" width="100%">
+                <a href="addClientComment.html" class="btn btn-primary mb-2">Add Comment</a>
+                <br>
+                <br>
+                <!-- <button onclick="javascript"="addClientComment.html" class="btn btn-primary mb-2">Add Comment</button> -->
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Note ID</th>
+                            <!-- <th>Timestamp</th> -->
+                            <th>Comment</th>
+                        </tr>
+                    </thead>
+                    <tbody v-if="comments">
+                        <tr v-for="item in comments">
+                            <td>{{item.noteId}}</td>
+                            <!-- <td>{{item.timestamp}}</td> -->
+                            <td>{{item.notes}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+        </div>
+
         </div>
 
         </div>
