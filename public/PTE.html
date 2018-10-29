@@ -11,7 +11,7 @@
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script> -->
 
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/main_styler.css">
@@ -121,7 +121,9 @@
 
         <div class="row">
             <div class="col-sm-9">
-                <canvas id="bar-chart" height="500" width="800"></canvas>
+              <div class="mainAvailabilityChart" style="height:500px; width:800px;">
+              </div>
+                <!-- <canvas id="bar-chart" height="500" width="800"></canvas> -->
             </div>
             <div class="col-sm-3">
                 <div class="card">
@@ -184,6 +186,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <!-- Highcharts CDN -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
 
     <!-- Data aggregator -->
     <script type="text/javascript" src="js/aggregator.js"></script>
