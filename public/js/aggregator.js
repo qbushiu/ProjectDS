@@ -107,7 +107,17 @@ var commentsApp = new Vue({
 	      .then(response => response.json())
 	      .then (json => {
 					commentsApp.sensorTimeSeries = json;
-					console.log(commentsApp.sensorTimeSeries);
+					this.formatSensorTime();
+					if (document.getElementById("mainAvailabilityChart")) {
+						this.buildAvailabilityChart();
+					}
+					this.buildSensorAvailability();
+					this.buildSensorHeatRate();
+					this.buildSensorReliability();
+					this.buildSensorTrips();
+					this.buildSensorStarts();
+					this.buildSensorEfficiency();
+					console.log("MAPPED DATA!:", this.sensorTimeSeries.map( entry => [entry.dateCollected, entry.availability]));
 				})
 	      .catch( function(err){
 	        console.log(err)
@@ -173,14 +183,381 @@ var commentsApp = new Vue({
 	      .catch( function(err){
 	        console.log(err)
 	      })
+			},
+			formatSensorTime(){
+				this.sensorTimeSeries.forEach(
+				(entry, index, arr) => {
+					entry.dataCollectedDate = entry.dataCollectedDate;
+					entry.output = Number(entry.output);
+					entry.heatRate = Number(entry.heartRate);
+					entry.compressorEfficiency = Number(entry.compressorEfficiency);
+					entry.availability = Number(entry.availability);
+					entry.reliability = Number(entry.reliability);
+					entry.fixedHours = Number(entry.firedHours);
+					entry.trips = Number(entry.trips);
+					entry.starts = Number(entry.starts);
+				})
+			},
+			buildAvailabilityChart(){
+        Highcharts.chart('mainAvailabilityChart', {
+            chart: {
+                zoomType: 'x'
+            },
+            title: {
+                text: 'Availability for sensor 2'
+            },
+            yAxis: {
+                title: {
+                    text: 'Availability %'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                area: {
+                    fillColor: {
+                        linearGradient: {
+                            x1: 1,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1
+                        },
+                        stops: [
+                            [0, Highcharts.getOptions().colors[3]],
+                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                        ]
+                    },
+                    marker: {
+                        radius: 2
+                    },
+                    lineWidth: 1,
+                    states: {
+                        hover: {
+                            lineWidth: 1
+                        }
+                    },
+                    threshold: null
+                }
+            },
+
+            series: [{
+                type: 'area',
+                name: 'Availability %',
+								// data: [[1,55],[2,56],[3,67],[4,89]]
+                data: this.sensorTimeSeries.map( entry => [entry.dataCollectedDate, entry.availability])
+            }]
+        });
+			},
+			buildSensorAvailability(){
+        Highcharts.chart('sensorAvailabilityChart', {
+            chart: {
+                zoomType: 'x'
+            },
+            title: {
+                text: 'Availability for sensor 2'
+            },
+            yAxis: {
+                title: {
+                    text: 'Availability %'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                area: {
+                    fillColor: {
+                        linearGradient: {
+                            x1: 0,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1
+                        },
+                        stops: [
+                            [0, Highcharts.getOptions().colors[0]],
+                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                        ]
+                    },
+                    marker: {
+                        radius: 2
+                    },
+                    lineWidth: 1,
+                    states: {
+                        hover: {
+                            lineWidth: 1.3
+                        }
+                    },
+                    threshold: null
+                }
+            },
+
+            series: [{
+                type: 'area',
+                name: 'Availability %',
+								// data: [[1,55],[2,56],[3,67],[4,89]]
+                data: this.sensorTimeSeries.map( entry => [entry.dataCollectedDate.toString(), entry.availability])
+            }]
+        });
+			},
+			buildSensorReliability(){
+        Highcharts.chart('sensorReliabilityChart', {
+    yAxis: {
+        min: 95,
+				max: 100
+    },
+    title: {
+        text: 'Reliability'
+    },
+    series: [{
+        type: 'line',
+        name: 'Regression Line',
+        data: [[0, 98], [150, 98.5]],
+        marker: {
+            enabled: false
+        },
+        states: {
+            hover: {
+                lineWidth: 0
+            }
+        },
+        enableMouseTracking: false
+    }, {
+        type: 'scatter',
+        name: 'Observations',
+        data: this.sensorTimeSeries.map( entry => entry.reliability),
+        marker: {
+            radius: 4
+        }
+    }]
+});
+			},
+			buildSensorEfficiency(){
+        Highcharts.chart('sensorEfficiencyChart', {
+            chart: {
+                zoomType: 'x'
+            },
+            title: {
+                text: 'Compressor Efficiency for sensor 2'
+            },
+            yAxis: {
+                title: {
+                    text: 'Availability %'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                area: {
+                    fillColor: {
+                        linearGradient: {
+                            x1: 0,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1
+                        },
+                        stops: [
+                            [0, Highcharts.getOptions().colors[0]],
+                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                        ]
+                    },
+                    marker: {
+                        radius: 2
+                    },
+                    lineWidth: 1,
+                    states: {
+                        hover: {
+                            lineWidth: 1.3
+                        }
+                    },
+                    threshold: null
+                }
+            },
+
+            series: [{
+                type: 'area',
+                name: 'Availability %',
+								// data: [[1,55],[2,56],[3,67],[4,89]]
+                data: this.sensorTimeSeries.map( entry => [entry.dataCollectedDate.toString(), entry.compressorEfficiency])
+            }]
+        });
+			},
+			buildSensorStarts(){
+        Highcharts.chart('sensorStartsChart', {
+            chart: {
+                zoomType: 'x'
+            },
+            title: {
+                text: 'Starts for sensor 2'
+            },
+            yAxis: {
+                title: {
+                    text: 'Availability %'
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                area: {
+                    fillColor: {
+                        linearGradient: {
+                            x1: 0,
+                            y1: 0,
+                            x2: 0,
+                            y2: 1
+                        },
+                        stops: [
+                            [0, Highcharts.getOptions().colors[0]],
+                            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+                        ]
+                    },
+                    marker: {
+                        radius: 2
+                    },
+                    lineWidth: 1,
+                    states: {
+                        hover: {
+                            lineWidth: 1.4
+                        }
+                    },
+                    threshold: null
+                }
+            },
+
+            series: [{
+                type: 'area',
+                name: 'Availability %',
+								// data: [[1,55],[2,56],[3,67],[4,89]]
+                data: this.sensorTimeSeries.map( entry => [entry.dataCollectedDate.toString(), entry.starts])
+            }]
+        });
+			},
+			buildSensorTrips(){
+        Highcharts.chart('sensorTripsChart', {
+    chart: {
+        type: 'scatter',
+        zoomType: 'xy'
+    },
+    title: {
+        text: 'Starts and Trips for sensor 2'
+    },
+    xAxis: {
+        title: {
+            enabled: true,
+            text: 'Date'
+        },
+        startOnTick: true,
+        endOnTick: true,
+        showLastLabel: true
+    },
+    yAxis: {
+        title: {
+            text: 'Number'
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'left',
+        verticalAlign: 'top',
+        x: 100,
+        y: 70,
+        floating: true,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF',
+        borderWidth: 1
+    },
+    plotOptions: {
+        scatter: {
+            marker: {
+                radius: 5,
+                states: {
+                    hover: {
+                        enabled: true,
+                        lineColor: 'rgb(100,100,100)'
+                    }
+                }
+            },
+            states: {
+                hover: {
+                    marker: {
+                        enabled: false
+                    }
+                }
+            },
+            tooltip: {
+                headerFormat: '<b>{series.name}</b><br>',
+                pointFormat: '{point.x} had {point.y} {series.name} '
+            }
+        }
+    },
+    series: [{
+        name: 'Starts',
+        color: 'rgba(223, 83, 83, .5)',
+        data:  this.sensorTimeSeries.map( entry => [entry.dataCollectedDate.toString(), entry.starts]) }, {
+        name: 'Trips',
+        color: 'rgba(119, 152, 191, .5)',
+        data: this.sensorTimeSeries.map( entry => [entry.dataCollectedDate.toString(), entry.trips])
+    }]
+});
+			},
+			buildSensorHeatRate(){
+        Highcharts.chart('sensorHeatRateChart', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'HeatRate'
+    },
+    xAxis: {
+        type: 'category',
+        labels: {
+            rotation: -90,
+            style: {
+                fontSize: '8px',
+                fontFamily: 'Verdana, sans-serif'
+            }
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'HeatRate'
+        }
+    },
+    legend: {
+        enabled: false
+    },
+    tooltip: {
+        pointFormat: 'HeatRate: <b>{point.y:.1f}</b>'
+    },
+    series: [{
+        name: 'sensorHeatRate',
+        data: this.sensorTimeSeries.map( entry => [entry.dataCollectedDate.toString(), entry.heatRate]),
+        dataLabels: {
+            enabled: true,
+            rotation: -90,
+            color: '#FFFFFF',
+            align: 'right',
+            format: '{point.y:.1f}', // one decimal
+            y: 10, // 10 pixels down from the top
+            style: {
+                fontSize: '6px',
+                fontFamily: 'Verdana, sans-serif'
+            }
+        }
+    }]
+});
 			}
 	  },
 		created() {
+			this.formatSensorTime();
 			this.fetchSensorTimeSeries();
 			this.fetchAllTurbinesData();
 			this.fetchCientInfo();
 			this.fetchSitesInfo();
 			this.fetchClientComments();
+			//todo: add chart builder call
 			// this.addComment();
 			// this.checkData();
 		}
@@ -191,27 +568,4 @@ var commentsApp = new Vue({
 		current = moment().startOf('day');
 		diff = moment.duration(given.diff(current)).asDays();
 		return diff+" days ago";
-	}
-
-	function plotAvailability() {
-		new Chart(document.getElementById("bar-chart"), {
-						type: 'bar',
-				data: {
-					labels: ["9/10","9/11","9/12","9/13","9/14","9/15","9/16","9/17","9/18"],
-					datasets: [
-						{
-							label: "Availability",
-							backgroundColor: "#3e95cd",
-							data: [98,97,95,98,97,96,98,97,98]
-						}
-					]
-				},
-				options: {
-					legend: { display: false },
-					title: {
-						display: true,
-						text: 'Availability % by day'
-					}
-				}
-		});
 	}
